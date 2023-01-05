@@ -5,7 +5,7 @@ remote_state {
     if_exists = "overwrite_terragrunt"
   }
   config = {
-    bucket = "k8sclass-tf-state"
+    bucket = "${TF_STATE_BUCKET}"
     key = "stage/${path_relative_to_include()}/terraform.tfstate"
     region = "us-west-2"
     encrypt = true
@@ -33,7 +33,7 @@ data "terraform_remote_state" "iam" {
   backend = "s3"
   config = {
     region = "us-west-2"
-    bucket = "k8sclass-tf-state"
+    bucket = "${TF_STATE_BUCKET}"
     key    = "iam/terraform.tfstate"
   }
 }
